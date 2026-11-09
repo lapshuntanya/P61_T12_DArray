@@ -3,4 +3,5 @@ project(P61_T12_DArray)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(P61_T12_DArray main.cpp)
+add_executable(P61_T12_DArray main.cpp
+        DArrayTemplate.h)

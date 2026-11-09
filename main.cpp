@@ -1,5 +1,4 @@
-#include <iostream>
-using namespace  std;
+#include "DArrayTemplate.h"
 
 int main() {
 
@@ -9,38 +8,17 @@ int main() {
     cout << "Input row, col: ";
     cin >> row >> col;      // row = 3, col = 2
 
-    //1. Виділення динамічної памʼяті
-    //                       m[0]     m[1]     m[2]
-    m = new int*[row]; // [nullptr, nullptr, nullptr]
-    //Під кожний покажчик створюємо масив значень
-    for (int i =0; i < row; i++) {
-        m[i] = new int[col];      //m[0] -> [0, 0]
-                                  //m[1] -> [0, 0]
-                                  //m[2] -> [0, 0]
-    }
+
+    cout << "Before: " << m  << endl;
+    createMemory(m, row, col);
+    cout << "After: " << m  << endl;
+
+    randArray(m, row, col, -100, 100);
+    printArray(m, row, col);
 
 
-
-    //2. Обробка масиву
-    //2.1 Заповнення випадковими числами та виведення на екран
-    for (int i =0; i < row; i++) {
-        for (int j = 0; j < col; j++) {
-            m[i][j] = rand()%10;
-            cout.width(5);
-            cout << m[i][j];
-        }
-        cout << endl;
-    }
-
-
-    //3. Очищення динамічної памʼяті
-    for (int i = 0; i< row; i++) {
-        delete[] m[i];
-    }
-    delete[] m;
-    m = nullptr;
-    row = col = 0;
-
+    freeMemory(m, row, col);
+    cout << "Finish: " << m << endl;
 
     return 0;
 }
